@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: eduardo-lima
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueComputed: nextval('seq_users_id')
+              - column:
+                  name: first_name
+                  value: 'Eduardo'
+              - column:
+                  name: last_name
+                  value: 'Lima'
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueComputed: nextval('seq_users_id')
+              - column:
+                  name: first_name
+                  value: 'Juaum'
+              - column:
+                  name: last_name
+                  value: 'Bauer'
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueComputed: nextval('seq_users_id')
+              - column:
+                  name: first_name
+                  value: 'Aleonor'
+              - column:
+                  name: last_name
+                  value: 'Jung'
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueComputed: nextval('seq_users_id')
+              - column:
+                  name: first_name
+                  value: 'Walleria'
+              - column:
+                  name: last_name
+                  value: 'Putnik'

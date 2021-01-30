@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: eduardo-lima
+      changes:
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: id
+                  valueComputed: nextval('seq_countries_id')
+              - column:
+                  name: name
+                  value: 'Australia'
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: id
+                  valueComputed: nextval('seq_countries_id')
+              - column:
+                  name: name
+                  value: 'Brasil'
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: id
+                  valueComputed: nextval('seq_countries_id')
+              - column:
+                  name: name
+                  value: 'Canada'
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: id
+                  valueComputed: nextval('seq_countries_id')
+              - column:
+                  name: name
+                  value: 'New Zeland'

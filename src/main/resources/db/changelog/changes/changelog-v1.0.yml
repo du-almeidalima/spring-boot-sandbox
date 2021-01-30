@@ -1,0 +1,117 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: eduardo-lima
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    - primaryKey: true
+                    - nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    - nullable: false
+        - createTable:
+            tableName: companies
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    - primaryKey: true
+                    - nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: identifier
+                  type: varchar(255)
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: country_id
+                  type: int
+                  constraints:
+                    - nullable: false
+        - createTable:
+            tableName: countries
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    - primaryKey: true
+                    - nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    - nullable: false
+        - createTable:
+            tableName: solicitations
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    - primaryKey: true
+                    - nullable: false
+              - column:
+                  name: status
+                  type: varchar(75)
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: type
+                  type: varchar(75)
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    - nullable: true
+              - column:
+                  name: company_id
+                  type: int
+                  constraints:
+                    - nullable: true
+        - createSequence:
+            - sequenceName: seq_users_id
+        - createSequence:
+            - sequenceName: seq_companies_id
+        - createSequence:
+            - sequenceName: seq_countries_id
+        - createSequence:
+            - sequenceName: seq_solicitations_id
+        - addForeingKeyConstraint:
+            baseTableName: companies
+            baseColumnNames: country_id
+            constraintName: fk_companies_contry_id
+            referencedTableName: countries
+            referencedColumnNames: id
+        - addForeingKeyConstraint:
+            baseTableName: solicitations
+            baseColumnNames: user_id
+            constraintName: fk_solicitations_user_id
+            referencedTableName: users
+            referencedColumnNames: id
+        - addForeingKeyConstraint:
+            baseTableName: solicitations
+            baseColumnNames: company_id
+            constraintName: fk_solicitations_company_id
+            referencedTableName: companies
+            referencedColumnNames: id
