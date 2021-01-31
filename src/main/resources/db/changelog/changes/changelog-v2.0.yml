@@ -10,6 +10,9 @@ databaseChangeLog:
                   name: id
                   valueComputed: nextval('seq_users_id')
               - column:
+                  name: email
+                  value: 'dudu@email.com'
+              - column:
                   name: first_name
                   value: 'Eduardo'
               - column:
@@ -21,6 +24,9 @@ databaseChangeLog:
               - column:
                   name: id
                   valueComputed: nextval('seq_users_id')
+              - column:
+                  name: email
+                  value: 'juaum@email.com'
               - column:
                   name: first_name
                   value: 'Juaum'
@@ -34,6 +40,9 @@ databaseChangeLog:
                   name: id
                   valueComputed: nextval('seq_users_id')
               - column:
+                  name: email
+                  value: 'aleonor@email.com'
+              - column:
                   name: first_name
                   value: 'Aleonor'
               - column:
@@ -45,6 +54,9 @@ databaseChangeLog:
               - column:
                   name: id
                   valueComputed: nextval('seq_users_id')
+              - column:
+                  name: email
+                  value: 'walleria@email.com'
               - column:
                   name: first_name
                   value: 'Walleria'

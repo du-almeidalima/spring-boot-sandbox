@@ -25,7 +25,7 @@ public class CompanyController {
         this.countryRepository = countryRepository;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping()
     public ResponseEntity<?> getCompanies(
             @PageableDefault(size = Integer.MAX_VALUE, direction = Sort.Direction.DESC) Pageable pageable
     ) {

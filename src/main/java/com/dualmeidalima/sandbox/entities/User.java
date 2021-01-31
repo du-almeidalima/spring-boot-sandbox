@@ -1,9 +1,12 @@
 package com.dualmeidalima.sandbox.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+@Data
 @Entity()
 @Table(name = "users")
 public class User {
@@ -21,9 +24,17 @@ public class User {
     )
     private int id;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "solicitation_id", referencedColumnName = "id")
+    @JsonIgnore
+    private Solicitation solicitation;
 }

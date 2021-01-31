@@ -1,6 +1,7 @@
 package com.dualmeidalima.sandbox.entities;
 
 import com.dualmeidalima.sandbox.enums.SolicitationStatus;
+import com.dualmeidalima.sandbox.enums.SolicitationType;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -29,11 +30,13 @@ public class Solicitation {
     @Enumerated(EnumType.STRING)
     private SolicitationStatus status = SolicitationStatus.PENDING;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @Column(name = "type", updatable = false)
+    @Enumerated(EnumType.STRING)
+    private SolicitationType type;
+
+    @OneToOne(mappedBy = "solicitation", cascade = CascadeType.PERSIST)
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "company_id")
+    @OneToOne(mappedBy = "solicitation", cascade = CascadeType.PERSIST)
     private Company company;
 }

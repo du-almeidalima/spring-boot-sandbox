@@ -13,6 +13,12 @@ databaseChangeLog:
                     - primaryKey: true
                     - nullable: false
               - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    - nullable: false
+                    - unique: ture
+              - column:
                   name: first_name
                   type: varchar(255)
                   constraints:
@@ -22,6 +28,9 @@ databaseChangeLog:
                   type: varchar(255)
                   constraints:
                     - nullable: false
+              - column:
+                  name: solicitation_id
+                  type: int
         - createTable:
             tableName: companies
             columns:
@@ -46,6 +55,9 @@ databaseChangeLog:
                   type: int
                   constraints:
                     - nullable: false
+              - column:
+                  name: solicitation_id
+                  type: int
         - createTable:
             tableName: countries
             columns:
@@ -114,4 +126,16 @@ databaseChangeLog:
             baseColumnNames: company_id
             constraintName: fk_solicitations_company_id
             referencedTableName: companies
+            referencedColumnNames: id
+        - addForeingKeyConstraint:
+            baseTableName: users
+            baseColumnNames: solicitation_id
+            constraintName: fk_users_solicitation_id
+            referencedTableName: solicitations
+            referencedColumnNames: id
+        - addForeingKeyConstraint:
+            baseTableName: companies
+            baseColumnNames: solicitation_id
+            constraintName: fk_companies_solicitation_id
+            referencedTableName: solicitations
             referencedColumnNames: id

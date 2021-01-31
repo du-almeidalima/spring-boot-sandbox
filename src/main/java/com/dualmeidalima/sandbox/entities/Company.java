@@ -1,5 +1,6 @@
 package com.dualmeidalima.sandbox.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -34,4 +35,9 @@ public class Company {
     @ManyToOne()
     @JoinColumn(name = "country_id")
     private Country country;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "solicitation_id", referencedColumnName = "id")
+    @JsonIgnore
+    private Solicitation solicitation;
 }

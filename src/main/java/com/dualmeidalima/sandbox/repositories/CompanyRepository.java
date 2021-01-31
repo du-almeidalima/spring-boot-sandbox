@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface CompanyRepository extends PagingAndSortingRepository<Company, Integer> {
     Optional<Company> findCompanyByCountryEquals(Country country);
+    Optional<Company> findCompanyByIdentifier(String identifier);
 }
