@@ -3,6 +3,7 @@ package com.dualmeidalima.sandbox.controllers;
 import com.dualmeidalima.sandbox.entities.Solicitation;
 import com.dualmeidalima.sandbox.enums.SolicitationStatus;
 import com.dualmeidalima.sandbox.repositories.SolicitationRepository;
+import com.dualmeidalima.sandbox.repositories.SolicitationViewRepository;
 import com.dualmeidalima.sandbox.services.SolicitationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -17,20 +18,24 @@ import org.springframework.web.bind.annotation.*;
 public class SolicitationController {
 
     private final SolicitationRepository solicitationRepository;
+    private final SolicitationViewRepository solicitationViewRepository;
     private final SolicitationService solicitationService;
 
     @Autowired
     public SolicitationController(SolicitationRepository solicitationRepository,
+                                  SolicitationViewRepository solicitationViewRepository,
                                   SolicitationService solicitationService) {
         this.solicitationRepository = solicitationRepository;
+        this.solicitationViewRepository = solicitationViewRepository;
         this.solicitationService = solicitationService;
     }
 
     @GetMapping()
     public ResponseEntity<?> getSolicitations(
+        @RequestParam(name = "name", required = false) String name,
         @PageableDefault(size = Integer.MAX_VALUE, direction = Sort.Direction.DESC) Pageable pageable
     ) {
-        var solicitations = this.solicitationRepository.findAll(pageable);
+        var solicitations = this.solicitationViewRepository.findWithFilters(name, pageable);
         return ResponseEntity.ok(solicitations);
     }
 

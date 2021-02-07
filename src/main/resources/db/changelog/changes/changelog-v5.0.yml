@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5
+      author: eduardo-lima
+      changes:
+        - createView:
+            viewName: vw_solicitations
+            selectQuery: SELECT s.id, "type", status, CASE WHEN "type" = 'COMPANY' THEN c."name" ELSE CONCAT(u.first_name, ' ', u.last_name) END AS name FROM solicitations s LEFT JOIN users u ON u.solicitation_id = s.id LEFT JOIN companies c on c.solicitation_id = s.id

@@ -91,16 +91,6 @@ databaseChangeLog:
                   type: varchar(75)
                   constraints:
                     - nullable: false
-              - column:
-                  name: user_id
-                  type: int
-                  constraints:
-                    - nullable: true
-              - column:
-                  name: company_id
-                  type: int
-                  constraints:
-                    - nullable: true
         - createSequence:
             - sequenceName: seq_users_id
         - createSequence:
@@ -114,18 +104,6 @@ databaseChangeLog:
             baseColumnNames: country_id
             constraintName: fk_companies_contry_id
             referencedTableName: countries
-            referencedColumnNames: id
-        - addForeingKeyConstraint:
-            baseTableName: solicitations
-            baseColumnNames: user_id
-            constraintName: fk_solicitations_user_id
-            referencedTableName: users
-            referencedColumnNames: id
-        - addForeingKeyConstraint:
-            baseTableName: solicitations
-            baseColumnNames: company_id
-            constraintName: fk_solicitations_company_id
-            referencedTableName: companies
             referencedColumnNames: id
         - addForeingKeyConstraint:
             baseTableName: users
