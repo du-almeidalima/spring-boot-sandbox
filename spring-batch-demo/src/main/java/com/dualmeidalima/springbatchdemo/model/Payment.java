@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name = "payments")
 public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -23,4 +24,6 @@ public class Payment {
 
     @CreationTimestamp
     private LocalDate date;
+
+    private Float amount;
 }

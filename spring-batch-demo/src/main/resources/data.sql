@@ -4,6 +4,8 @@ INSERT INTO roles(id, name, hourly) VALUES
     (3, 'Sr Developer', 35.00);
 
 INSERT INTO users(name, role) VALUES
-    ('Rodolfo Bouer', 1),
+    ('Rodolfo Boer', 1),
     ('Duardo Lima', 2),
-    ('Penelope Pig', 3);
+    ('Penelope Pig', 3),
+    ('Jackson`s Fivers', 3),
+    ('John Doe', 3);

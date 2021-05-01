@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class UserWorkedHoursDTO {
-    private Integer id;
-    private String name;
-    private Integer hoursWorked;
+    private Integer userId;
+    private Float hoursWorked;
 }

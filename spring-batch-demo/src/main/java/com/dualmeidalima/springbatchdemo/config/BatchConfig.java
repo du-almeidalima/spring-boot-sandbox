@@ -3,6 +3,7 @@ package com.dualmeidalima.springbatchdemo.config;
 import com.dualmeidalima.springbatchdemo.dto.UserWorkedHoursDTO;
 import com.dualmeidalima.springbatchdemo.model.Payment;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
@@ -14,14 +15,12 @@ import org.springframework.batch.item.file.LineMapper;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
-
-import java.util.List;
+import org.springframework.core.io.ClassPathResource;
 
 @Configuration
+@EnableBatchProcessing
 public class BatchConfig {
 
 
@@ -61,11 +60,10 @@ public class BatchConfig {
 
     @Bean
     public FlatFileItemReader<UserWorkedHoursDTO> itemReader(
-            @Value("${input-file}") Resource resource,
             LineMapper<UserWorkedHoursDTO> lineMapper
     ) {
         var flatFileItemReader = new FlatFileItemReader<UserWorkedHoursDTO>();
-        flatFileItemReader.setResource(resource);
+        flatFileItemReader.setResource(new ClassPathResource("users-demo.csv"));
         flatFileItemReader.setName("USER_WORKED_HOURS-READER");
         flatFileItemReader.setLinesToSkip(1);
         flatFileItemReader.setLineMapper(lineMapper);
@@ -75,7 +73,7 @@ public class BatchConfig {
 
     // This LineMapper is what transforms the CSV line into a POJO
     @Bean
-    private LineMapper<UserWorkedHoursDTO> lineMapper() {
+    public LineMapper<UserWorkedHoursDTO> lineMapper() {
         var defaultLineMapper = new DefaultLineMapper<UserWorkedHoursDTO>();
         var lineTokenizer = new DelimitedLineTokenizer();
 
@@ -83,7 +81,7 @@ public class BatchConfig {
         lineTokenizer.setDelimiter(DelimitedLineTokenizer.DELIMITER_COMMA);
         lineTokenizer.setStrict(false);
         // Test removing
-        lineTokenizer.setNames("id", "name", "hoursWorked");
+        lineTokenizer.setNames("userId", "hoursWorked");
 
         // Configuring the Mapper
         // The BeanWrapperFieldSetMapper automates the mapping of a FieldSet
